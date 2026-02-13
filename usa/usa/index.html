@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全球移民情报站 - 实时内参</title>
+    <style>
+        :root { --primary: #1a73e8; --bg: #f8f9fa; }
+        body { font-family: -apple-system, system-ui, sans-serif; background: var(--bg); margin: 0; padding: 20px; }
+        .header { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .nav { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 10px; }
+        .btn { padding: 8px 16px; border: none; background: white; border-radius: 20px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); white-space: nowrap; }
+        .btn.active { background: var(--primary); color: white; }
+        .card { background: white; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-left: 5px solid var(--primary); }
+        .tag { font-size: 12px; font-weight: bold; color: var(--primary); text-transform: uppercase; }
+        .title { font-size: 18px; font-weight: bold; margin: 10px 0; color: #202124; }
+        .content { font-size: 14px; color: #5f6368; line-height: 1.6; }
+        .footer { font-size: 12px; color: #9aa0a6; margin-top: 15px; border-top: 1px dashed #eee; padding-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🌍 全球移民情报内参</h1>
+        <p>数据已完成脱敏处理，确保合规与资产安全</p>
+    </div>
+    <div class="nav">
+        <button class="btn active" onclick="filter('all')">全部情报</button>
+        <button class="btn" onclick="filter('USA')">美国 (NIW/EB1)</button>
+        <button class="btn" onclick="filter('Canada')">加拿大 (EE/PNP)</button>
+        <button class="btn" onclick="filter('Nomad')">数字游民</button>
+    </div>
+    <div id="feed">
+        <div class="card" data-cat="USA">
+            <div class="tag">美国 / 实时</div>
+            <div class="title">NIW 申请量异常波动预警</div>
+            <div class="content">Q1 接收量约 2.4 万件，RFE 率微升 4%。建议重点挖掘 AI 与生物医疗领域“某博士”级背景客户。</div>
+            <div class="footer">更新时间：2026年2月中旬 | 来源：官方数据扫描</div>
+        </div>
+        <div class="card" data-cat="Canada">
+            <div class="tag">加拿大 / 政策</div>
+            <div class="title">EE 法语类别低分获批信号</div>
+            <div class="content">最新一轮邀请分降至 400 分。全类别仍维持在 540 分以上。建议业务重心转向法语加分项目。</div>
+            <div class="footer">更新时间：2026年2月中旬 | 来源：IRCC 公告</div>
+        </div>
+    </div>
+    <script>
+        function filter(cat) {
+            document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            document.querySelectorAll('.card').forEach(c => {
+                c.style.display = (cat === 'all' || c.dataset.cat === cat) ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
